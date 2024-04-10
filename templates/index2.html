@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  
+    <title>Laura Bootstrap Template - Index</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+  
+    <!-- Favicons -->
+    <link href="static/img/favicon.png" rel="icon">
+    <link href="static/img/apple-touch-icon.png" rel="apple-touch-icon">
+  
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Satisfy" rel="stylesheet">
+  
+    <!-- Vendor CSS Files -->
+    <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="static/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="static/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="static/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  
+    <!-- Template Main CSS File -->
+    <link href="static/css/style.css" rel="stylesheet">
+  
+    <!-- =======================================================
+    * Template Name: Laura
+    * Template URL: https://bootstrapmade.com/laura-free-creative-bootstrap-theme/
+    * Updated: Mar 17 2024 with Bootstrap v5.3.3
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
+  </head>
+
+<body>
+    <header id="header" class="fixed-top d-flex justify-content-center align-items-center header-transparent">
+        <nav id="navbar" class="navbar">
+          <ul>
+            {% for link in nav_links %}
+              {% if link.dropdown %}
+                <li class="dropdown">
+                  <a href="#">
+                    <span>{{ link.label }}</span>
+                    <i class="bi bi-chevron-down"></i>
+                  </a>
+                  <ul>
+                    {% for sublink in link.sublinks %}
+                      {% if sublink.dropdown %}
+                        <li class="dropdown">
+                          <a href="#">
+                            <span>{{ sublink.label }}</span>
+                            <i class="bi bi-chevron-right"></i>
+                          </a>
+                          <ul>
+                            {% for deep_sublink in sublink.sublinks %}
+                              <li><a href="#">{{ deep_sublink.label }}</a></li>
+                            {% endfor %}
+                          </ul>
+                        </li>
+                      {% else %}
+                        <li><a href="#">{{ sublink.label }}</a></li>
+                      {% endif %}
+                    {% endfor %}
+                  </ul>
+                </li>
+              {% else %}
+                <li><a class="nav-link scrollto" href="{{ link.href }}">{{ link.label }}</a></li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+          <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+      </header><!-- End Header -->
+      
+
+
+    <!-- ======= Hero Section ======= -->
+<section id="hero">
+    <div class="hero-container">
+      <h1>{{ hero_data.title }}</h1>
+      <h2>{{ hero_data.subtitle }}</h2>
+      <a href="#about" class="btn-scroll scrollto" title="Scroll Down"><i class="bx bx-chevron-down"></i></a>
+    </div>
+</section><!-- End Hero -->
+
+<main id="main">
+    
+<!-- ======= About Me Section ======= -->
+<section id="about" class="about">
+    <div class="container">
+  
+      <div class="section-title">
+        <span>{{ about_data['title'] }}</span>
+        <h2>{{ about_data['title'] }}</h2>
+        {% if about_data['description'] %}
+        <p>{{ about_data['description'] }}</p>
+        {% endif %}
+      </div>
+  
+      <div class="row">
+        <div class="image col-lg-4 d-flex align-items-stretch justify-content-center justify-content-lg-start"></div>
+        <div class="col-lg-8 d-flex flex-column align-items-stretch">
+          <div class="content ps-lg-4 d-flex flex-column justify-content-center">
+            <div class="row">
+              <div class="col-lg-6">
+                <ul>
+                  {% if about_data['Name'] %}
+                  <li><i class="bi bi-chevron-right"></i> <strong>Name:</strong> <span>{{ about_data['Name'] }}</span></li>
+                  {% endif %}
+                  {% if about_data['Website'] %}
+                  <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong> <span>{{ about_data['Website'] }}</span></li>
+                  {% endif %}
+                  {% if about_data['Phone'] %}
+                  <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>{{ about_data['Phone'] }}</span></li>
+                  {% endif %}
+                  {% if about_data['City'] %}
+                  <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>{{ about_data['City'] }}</span></li>
+                  {% endif %}
+                </ul>
+              </div>
+              <div class="col-lg-6">
+                <ul>
+                  {% if about_data['Age'] %}
+                  <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span>{{ about_data['Age'] }}</span></li>
+                  {% endif %}
+                  {% if about_data['Degree'] %}
+                  <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>{{ about_data['Degree'] }}</span></li>
+                  {% endif %}
+                  {% if about_data['Email'] %}
+                  <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>{{ about_data['Email'] }}</span></li>
+                  {% endif %}
+                  {% if about_data['Freelance'] %}
+                  <li><i class="bi bi-chevron-right"></i> <strong>Freelance:</strong> <span>{{ about_data['Freelance'] }}</span></li>
+                  {% endif %}
+                </ul>
+              </div>
+            </div>
+            <div class="row mt-n4">
+              {% for item in about_data['Counters'] %}
+              <div class="col-md-6 mt-5 d-md-flex align-items-md-stretch">
+                <div class="count-box">
+                  <i class="{{ item['icon_class'] }}" style="color: {{ item['icon_color'] }};"></i>
+                  <span data-purecounter-start="{{ item['start'] }}" data-purecounter-end="{{ item['end'] }}" data-purecounter-duration="1" class="purecounter"></span>
+                  <p><strong>{{ item['title'] }}</strong> {{ item['description'] }}</p>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div><!-- End .content-->
+  
+          <div class="skills-content ps-lg-4">
+            {% if about_data['Skills'] %}
+            {% for skill in about_data['Skills'] %}
+            <div class="progress">
+              <span class="skill">{{ skill['name'] }} <i class="val">{{ skill['percentage'] }} %</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="{{ skill['percentage'] }}" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+          </div>
+  
+        </div>
+      </div>
+  
+    </div>
+  </section><!-- End About Me Section -->
+  
+
+
+<!-- ======= My Resume Section ======= -->
+<section id="resume" class="resume">
+    <div class="container">
+  
+      <div class="section-title">
+        <span>My Resume</span>
+        <h2>My Resume</h2>
+        <p>Sit sint consectetur velit quisquam cupiditate impedit suscipit alias</p>
+      </div>
+  
+      <div class="row">
+        <div class="col-lg-6">
+          <h3 class="resume-title">Summary</h3>
+          <div class="resume-item pb-0">
+            <h4>{{ resume_data['summary'][0]['name'] }}</h4>
+            <p><em>{{ resume_data['summary'][1]['description'] }}</em></p>
+            <p>
+              <ul>
+                <li>{{ resume_data['summary'][2]['address'] }}</li>
+                <li>{{ resume_data['summary'][3]['phone'] }}</li>
+                <li>{{ resume_data['summary'][4]['email'] }}</li>
+              </ul>
+            </p>
+          </div>
+  
+          <h3 class="resume-title">Education</h3>
+          {% for education in resume_data['education'] %}
+          <div class="resume-item">
+            <h4>{{ education['degree'] }}</h4>
+            <h5>{{ education['year'] }}</h5>
+            <p><em>{{ education['institution'] }}</em></p>
+            <p>{{ education['description'] }}</p>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="col-lg-6">
+          <h3 class="resume-title">Professional Experience</h3>
+          {% for experience in resume_data['experience'] %}
+          <div class="resume-item">
+            <h4>{{ experience['title'] }}</h4>
+            <h5>{{ experience['year'] }}</h5>
+            <p><em>{{ experience['company'] }}</em></p>
+            <p>
+              <ul>
+                {% for responsibility in experience['responsibilities'] %}
+                <li>{{ responsibility }}</li>
+                {% endfor %}
+              </ul>
+            </p>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+  
+    </div>
+  </section><!-- End My Resume Section -->
+  
+  
+
+<!-- ======= My Services Section ======= -->
+<section id="services" class="services">
+  <div class="container">
+
+    <div class="section-title">
+      <span>My Services</span>
+      <h2>My Services</h2>
+      <p>Sit sint consectetur velit quisquam cupiditate impedit suscipit alias</p>
+    </div>
+
+    <div class="row">
+      {% for service in services_data %}
+      <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+        <div class="icon-box">
+          <div class="icon"><i class="{{ service.icon_class }}"></i></div>
+          <h4 class="title"><a href="">{% if service.title %}{{ service.title }}{% endif %}</a></h4>
+          <p class="description">{% if service.description %}{{ service.description }}{% endif %}</p>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+
+  </div>
+</section><!-- End My Services Section -->
+
+
+
+<!-- ======= Testimonials Section ======= -->
+<section id="testimonials" class="testimonials">
+    <div class="container position-relative">
+  
+      <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
+        <div class="swiper-wrapper">
+  
+          {% for testimonial in testimonials_data %}
+          <div class="swiper-slide">
+            <div class="testimonial-item">
+              {% if testimonial['image'] %}
+              <img src="{{ testimonial['image'] }}" class="testimonial-img" alt="">
+              {% endif %}
+              <h3>{{ testimonial['name'] }}</h3>
+              <h4>{{ testimonial['position'] }}</h4>
+              <p>
+                {% if testimonial['quote'] %}
+                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                {{ testimonial['quote'] }}
+                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                {% endif %}
+              </p>
+            </div>
+          </div><!-- End testimonial item -->
+          {% endfor %}
+  
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+  
+    </div>
+  </section><!-- End Testimonials Section -->
+  
+
+<!-- ======= My Portfolio Section ======= -->
+<section id="portfolio" class="portfolio">
+    <div class="container">
+  
+      <div class="section-title">
+        <span>My Portfolio</span>
+        <h2>My Portfolio</h2>
+        <p>Sit sint consectetur velit quisquam cupiditate impedit suscipit alias</p>
+      </div>
+  
+      <ul id="portfolio-flters" class="d-flex justify-content-center">
+        <li data-filter="*" class="filter-active">All</li>
+        <li data-filter=".filter-app">App</li>
+        <li data-filter=".filter-card">Card</li>
+        <li data-filter=".filter-web">Web</li>
+      </ul>
+  
+      <div class="row portfolio-container">
+        {% for item in portfolio_data %}
+        {% if item['img_src'] %}
+        <div class="col-lg-4 col-md-6 portfolio-item {{ item['filter'] }}">
+          <div class="portfolio-img"><img src="{{ item['img_src'] }}" class="img-fluid" alt=""></div>
+          <div class="portfolio-info">
+            <h4>{{ item['title'] }}</h4>
+            <p>{{ item['category'] }}</p>
+            <a href="{{ item['img_src'] }}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="{{ item['title'] }}"><i class="bx bx-plus"></i></a>
+            <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+          </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+  
+    </div>
+  </section><!-- End My Portfolio Section -->
+  
+
+  <section id="pricing" class="pricing">
+    <div class="container">
+      <div class="section-title">
+        <span>Pricing</span>
+        <h2>Pricing</h2>
+        <p>Sit sint consectetur velit quisquam cupiditate impedit suscipit alias</p>
+      </div>
+      <div class="row">
+          <div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
+              <div class="box">
+                  <h3>Free</h3>
+                  <h4><sup>$</sup>0<span> / month</span></h4>
+                  <ul>
+                      <li>Aida dere</li>
+                      <li>Nec feugiat nisl</li>
+                      <li>Nulla at volutpat dola</li>
+                  </ul>
+                  <div class="btn-wrap">
+                      <a href="#" class="btn-buy">Buy Now</a>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
+              <div class="box featured">
+                  <h3>Business</h3>
+                  <h4><sup>$</sup>19<span> / month</span></h4>
+                  <ul>
+                      <li>Aida dere</li>
+                      <li>Nec feugiat nisl</li>
+                      <li>Nulla at volutpat dola</li>
+                      <li>Pharetra massa</li>
+                  </ul>
+                  <div class="btn-wrap">
+                      <a href="#" class="btn-buy">Buy Now</a>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
+              <div class="box">
+                  <h3>Developer</h3>
+                  <h4><sup>$</sup>29<span> / month</span></h4>
+                  <ul>
+                      <li>Aida dere</li>
+                      <li>Nec feugiat nisl</li>
+                      <li>Nulla at volutpat dola</li>
+                      <li>Pharetra massa</li>
+                      <li>Massa ultricies mi</li>
+                  </ul>
+                  <div class="btn-wrap">
+                      <a href="#" class="btn-buy">Buy Now</a>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
+              <div class="box">
+                  <span class="advanced">Advanced</span>
+                  <h3>Ultimate</h3>
+                  <h4><sup>$</sup>49<span> / month</span></h4>
+                  <ul>
+                      <li>Aida dere</li>
+                      <li>Nec feugiat nisl</li>
+                      <li>Nulla at volutpat dola</li>
+                      <li>Pharetra massa</li>
+                      <li>Massa ultricies mi</li>
+                  </ul>
+                  <div class="btn-wrap">
+                      <a href="#" class="btn-buy">Buy Now</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </section><!-- End Pricing Section -->
+  
+<!-- ======= Contact Me Section ======= -->
+<section id="contact" class="contact">
+    <div class="container">
+
+        <div class="section-title">
+            <span>Contact Me</span>
+            <h2>Contact Me</h2>
+            <p>Sit sint consectetur velit quisquam cupiditate impedit suscipit alias</p>
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-6">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="info-box">
+                            <i class="bx bx-share-alt"></i>
+                            <h3>Social Profiles</h3>
+                            <div class="social-links">
+                                {% for platform, link in contact_data.social_profiles.items() %}
+                                <a href="{{ link }}" class="{{ platform }}"><i class="bi bi-{{ platform }}"></i></a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-box mt-4">
+                            <i class="bx bx-envelope"></i>
+                            <h3>Email Me</h3>
+                            <p>{{ contact_data.email }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-box mt-4">
+                            <i class="bx bx-phone-call"></i>
+                            <h3>Call Me</h3>
+                            <p>{{ contact_data.phone }}</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-6">
+                <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="col-md-6 form-group mt-3 mt-md-0">
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                        </div>
+                    </div>
+                    <div class="form-group mt-3">
+                        <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+                    </div>
+                    <div class="form-group mt-3">
+                        <textarea class="form-control" name="message" rows="6" placeholder="Message" required></textarea>
+                    </div>
+                    <div class="my-3">
+                        <div class="loading">Loading</div>
+                        <div class="error-message"></div>
+                        <div class="sent-message">Your message has been sent. Thank you!</div>
+                    </div>
+                    <div class="text-center"><button type="submit">Send Message</button></div>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+</section><!-- End Contact Me Section -->
+
+</main>
+
+<!-- ======= Footer ======= -->
+<footer id="footer">
+    <div class="container">
+      <h3>{{ footer_data.name }}</h3>
+      <p>{{ footer_data.description }}</p>
+      <div class="social-links">
+        {% for platform, link in footer_data.social_links.items() %}
+        <a href="{{ link }}" class="{{ platform }}"><i class="bx bxl-{{ platform }}"></i></a>
+        {% endfor %}
+      </div>
+      <div class="copyright">
+        &copy; Copyright <strong><span>{{ footer_data.name }}</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/laura-free-creative-bootstrap-theme/ -->
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<!-- Vendor JS Files -->
+<script src="{{ url_for('static', filename='vendor/purecounter/purecounter_vanilla.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/glightbox/js/glightbox.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/swiper/swiper-bundle.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/waypoints/noframework.waypoints.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/php-email-form/validate.js') }}"></script>
+
+<!-- Template Main JS File -->
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  
+</body>
+
+</html>
